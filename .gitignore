@@ -1,0 +1,43 @@
+.gradle
+
+#th2 connectivity
+evolution_all.log
+
+#elcipse files
+.metadata
+.recommenders
+.settings
+.classpath
+.project
+RemoteSystemsTempFiles
+Servers
+
+build
+srcgen
+shared
+gen
+bin
+external
+provided
+components
+
+#temp files
+.*.swp
+.~*.*#
+
+#test files
+derby.log
+
+#IntelliJ IDEA files
+*.iml
+*.iws
+.idea
+out
+
+#Sailfish
+shared_workspace
+tmp_workspace
+
+#support files
+*.log
+*.log.gz

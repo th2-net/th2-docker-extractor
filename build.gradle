@@ -1,0 +1,45 @@
+plugins {
+    id 'application'
+    id 'org.jetbrains.kotlin.jvm' version '1.8.22'
+    id 'com.exactpro.th2.gradle.component' version '0.1.6'
+    id 'com.exactpro.th2.gradle.publish' version '0.1.6'
+    id 'maven-publish'
+}
+
+group 'com.exactpro.th2'
+version release_version
+
+kotlin.jvmToolchain(11)
+
+repositories {
+    mavenCentral()
+    maven {
+        name 'Sonatype_snapshots'
+        url 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+    }
+    maven {
+        name 'Sonatype_releases'
+        url 'https://s01.oss.sonatype.org/content/repositories/releases/'
+    }
+
+    configurations.configureEach {
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+        resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
+    }
+}
+
+dependencies {
+    implementation "com.fasterxml.jackson.core:jackson-core:$jackson_version"
+    implementation "com.fasterxml.jackson.core:jackson-databind:$jackson_version"
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:$jackson_version"
+    implementation "com.github.ajalt.clikt:clikt:4.0.0"
+
+    testImplementation "org.jetbrains.kotlin:kotlin-test"
+}
+
+application {
+    applicationName = 'th2-docker-extractor'
+    mainClass.set("com.exactpro.th2.tools.MainKt")
+}
+
+test.useJUnitPlatform()
